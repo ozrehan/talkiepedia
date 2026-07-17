@@ -203,7 +203,7 @@ export const Layout = () => {
         <div className="header-right">
           {/* Global Search Box */}
           <form className="global-search-form" onSubmit={handleGlobalSearchSubmit}>
-            <Search size={16} className="search-icon" />
+            <Search size={20} className="search-icon" />
             <input
               id="global-search-input"
               type="text"
@@ -275,7 +275,7 @@ export const Layout = () => {
 
             {/* Notification Bell */}
             <button className="action-icon-btn notification-btn" aria-label="Notifications" title="Notifications">
-              <Bell size={24} />
+              <Bell size={28} />
               <span className="notification-dot"></span>
             </button>
 
