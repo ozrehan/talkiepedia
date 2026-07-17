@@ -1,0 +1,152 @@
+.article-page {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 40px;
+}
+
+.article-main {
+  padding: 40px;
+}
+
+.article-header {
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 24px;
+}
+
+.article-title {
+  font-size: 2.5rem;
+  margin: 16px 0 24px;
+  line-height: 1.3;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.author-info h4 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.author-info span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.article-body {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.article-body h2 {
+  font-size: 1.8rem;
+  margin: 32px 0 16px;
+  color: var(--text-primary);
+}
+
+.article-body p {
+  margin-bottom: 24px;
+}
+
+.code-block {
+  background: var(--bg-sidebar);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  margin: 0;
+}
+
+.code-block code {
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  color: var(--primary-blue);
+}
+
+.article-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 40px;
+}
+
+.action-group {
+  display: flex;
+  gap: 16px;
+}
+
+.icon-btn.liked {
+  color: #ef4444; /* Red for liked */
+}
+
+/* Sidebar */
+.ai-tools-card {
+  position: sticky;
+  top: 90px;
+}
+
+.ai-tools-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.ai-action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ai-action-btn {
+  justify-content: flex-start;
+  padding: 16px;
+  text-align: left;
+}
+
+.text-left h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.text-left span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.text-yellow { color: #eab308; }
+
+.ai-highlight-box {
+  background: var(--divider);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-color);
+}
+
+.ai-highlight-box p {
+  font-size: 0.9rem;
+  margin: 8px 0 0;
+  color: var(--text-secondary);
+}

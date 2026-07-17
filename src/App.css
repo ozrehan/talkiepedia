@@ -1,0 +1,133 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Hide main scroll, handle in content */
+}
+
+/* Top Navigation */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.brand-icon {
+  background: linear-gradient(135deg, var(--primary-blue), var(--cyan-accent));
+  color: white;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--primary-blue);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.global-search {
+  display: flex;
+  align-items: center;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  width: 300px;
+  gap: 8px;
+  transition: var(--transition-fast);
+}
+
+.global-search:focus-within {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  background: var(--bg-card);
+}
+
+.global-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.icon-btn {
+  color: var(--text-secondary);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--divider);
+  color: var(--primary-blue);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+}
+
+/* Main Content Area */
+.main-wrapper {
+  margin-top: 70px; /* Offset for top nav */
+  flex: 1;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  position: relative;
+  background-color: var(--bg-main);
+}
