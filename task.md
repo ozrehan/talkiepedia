@@ -1,0 +1,12 @@
+- `[x]` Configure Core Design Tokens & Theme Styles (index.css, talkiepedia.css)
+- `[x]` Setup App Router and import all views (App.jsx)
+- `[x]` Build Sticky Header, Sidebar, Breadcrumbs, and Accessibility controls (Layout.jsx)
+- `[x]` Enhance Global Audio Player and Toll Free Widget styling
+- `[x]` Implement Context-Aware AI Knowledge Assistant Widget (AIAssistantWidget.jsx, AIAssistantWidget.css)
+- `[x]` Redesign Home Page (Home.jsx)
+- `[x]` Redesign Podcasts Page with modern grid and filters (Podcasts.jsx)
+- `[x]` Redesign AI Search Page (AISearch.jsx, AISearch.css)
+- `[x]` Redesign Article Page with reading progress & TOC (Article.jsx, Article.css)
+- `[x]` Redesign Community Page (Community.jsx, Community.css)
+- `[x]` Redesign Dashboard Page with rich Recharts & SaaS look (Dashboard.jsx, Dashboard.css)
+- `[x]` Verification & Testing (npm run lint, npm run build)

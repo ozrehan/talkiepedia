@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useAudioPlayer } from '../components/AudioPlayerContext';
+import { 
+  Search, Play, Headphones, Clock, Calendar, 
+  ChevronRight, AlertCircle, Sparkles 
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Podcasts = () => {
   const { playTrack } = useAudioPlayer();
@@ -9,7 +14,7 @@ const Podcasts = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
 
-  // Extended podcast episodes list for filter demonstration
+  // Extended podcast episodes list
   const episodes = [
     {
       id: 'rec-0',
@@ -75,9 +80,12 @@ const Podcasts = () => {
       icon: 'success',
       title: 'Subscribed!',
       text: `Thank you for subscribing with: ${emailInput}`,
-      confirmButtonColor: '#0d6efd',
-      background: '#21282b',
-      color: '#fff',
+      confirmButtonColor: '#16a34a',
+      background: 'var(--bg-sidebar)',
+      color: 'var(--text-primary)',
+      customClass: {
+        popup: 'glassmorphism border-color'
+      }
     });
     setEmailInput('');
   };
@@ -92,31 +100,30 @@ const Podcasts = () => {
   };
 
   return (
-    <div className="podcasts-page-container">
-      {/* BANNER */}
+    <div className="podcasts-page-container animate-fade-in">
+      
+      {/* BANNER HEADER */}
       <section
-        className="section position-relative"
+        className="section py-5 position-relative overflow-hidden border-bottom border-color"
         style={{
-          backgroundImage: "url('https://talkiepedia.forgealumnus.com/image/banner.jpg')",
+          backgroundImage: "linear-gradient(135deg, rgba(6, 9, 19, 0.85) 0%, rgba(14, 19, 38, 0.9) 100%), url('https://talkiepedia.forgealumnus.com/image/banner.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           padding: '80px 0',
         }}
       >
-        <div className="image-overlay"></div>
-        <div className="r-container position-relative" style={{ zIndex: 2 }}>
+        <div className="container position-relative" style={{ zIndex: 2 }}>
           <div className="d-flex flex-column">
-            <h2 className="font-1 fw-bold text-white">
-              <span className="text-white">About </span>
+            <h2 className="display-5 fw-bold text-white mb-2">
               <span className="text-white">Our </span>
               <span className="accent-color">Podcasts</span>
             </h2>
             <nav aria-label="breadcrumb">
-              <ol className="breadcrumb font-2">
+              <ol className="breadcrumb m-0 font-heading">
                 <li className="breadcrumb-item">
-                  <a href="/" style={{ color: '#0d6efd', textDecoration: 'none' }}>
+                  <Link to="/" style={{ color: 'var(--primary-blue)', textDecoration: 'none' }}>
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="breadcrumb-item active text-white" aria-current="page">
                   Podcasts
@@ -127,431 +134,213 @@ const Podcasts = () => {
         </div>
       </section>
 
-      {/* Favorite Podcasts */}
-      <section className="section">
-        <div className="r-container">
-          <div className="d-flex flex-column gap-3 text-center">
-            <h3 className="font-1 fw-bold text-black">
-              Most Favorite <span className="accent-color">Podcasts</span>
+      {/* RECENT EPISODES & INTERACTIVE FILTERS */}
+      <section className="py-5" id="episodes-section">
+        <div className="container">
+          <div className="text-center mb-4">
+            <span className="text-cyan-accent small fw-bold text-uppercase tracking-wider">Our Repository</span>
+            <h3 className="fw-bold text-white mb-2 mt-1">
+              Explore <span className="accent-color">Episodes</span>
             </h3>
-            <p className="mx-auto text-black" style={{ maxWidth: '768px' }}>
-              Discover the most popular career-driven podcasts. Dive into expert advice, industry secrets, and inspiring stories that help you level up in your professional journey.
+            <p className="text-secondary mx-auto" style={{ maxWidth: '640px' }}>
+              Access full recorded discussions. Filter by categories or query specific speakers.
             </p>
-            <div className="row row-cols-1 row-cols-lg-3 w-100 text-start">
-              {/* Card 1 */}
-              <div className="col mb-3">
-                <div
-                  className="d-flex flex-column gap-3 h-100 card-hover"
-                  style={{
-                    boxShadow: '0 2px 8px rgb(0 0 0 / 5%)',
-                    padding: '10px',
-                    borderRadius: '16px',
-                  }}
-                >
-                  <div className="position-relative h-100 podcast-card-shadow">
-                    <div className="image-overlay-2"></div>
-                    <div className="position-absolute start-0 top-0 w-100 h-100" style={{ zIndex: 2 }}>
-                      <div className="d-flex justify-content-center align-items-center h-100 gap-2">
-                        <button
-                          type="button"
-                          className="btn request-loader"
-                          onClick={() => openVideoModal('https://www.youtube.com/embed/5oZ_GtRx6S0?autoplay=1')}
-                          title="Watch Video"
-                        >
-                          <i className="fa-solid fa-play ms-1"></i>
-                        </button>
-                        <button
-                          type="button"
-                          className="btn request-loader bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
-                          style={{ width: '45px', height: '45px' }}
-                          onClick={() =>
-                            handlePlayAudio(
-                              'The World of Aerospace',
-                              'Sumanvitha | Collins Aerospace',
-                              'https://talkiepedia.forgealumnus.com/image/collinionsaeroscope.png',
-                              '5oZ_GtRx6S0'
-                            )
-                          }
-                          title="Listen Audio"
-                        >
-                          <i className="fa-solid fa-headphones"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <img
-                      src="https://talkiepedia.forgealumnus.com/image/collinionsaeroscope.png"
-                      alt="The World of Aerospace"
-                      className="img-fluid rounded-3"
-                      onError={(e) => {
-                        e.target.src = 'https://talkiepedia.forgealumnus.com/images/fallback-podcast.jpg';
-                      }}
-                    />
-                  </div>
-                  <div className="d-flex flex-row gap-5">
-                    <div className="d-flex flex-row align-items-center gap-2">
-                      <i className="fa-regular fa-clock accent-color"></i>
-                      <span className="text-soft-dark">135m</span>
-                    </div>
-                    <div className="d-flex flex-row align-items-center gap-2">
-                      <i className="fa-solid fa-calendar-days accent-color"></i>
-                      <span className="text-soft-dark">January 2025</span>
-                    </div>
-                  </div>
-                  <h5 className="font-1 fw-bold lh-1 text-soft-dark">The World of Aerospace</h5>
-                  <p className="text-soft-dark">Sumanvitha | Collins Aerospace</p>
-                </div>
-              </div>
+          </div>
 
-              {/* Card 2 */}
-              <div className="col mb-3">
-                <div
-                  className="d-flex flex-column gap-3 h-100 card-hover"
-                  style={{
-                    boxShadow: '0 2px 8px rgb(0 0 0 / 5%)',
-                    padding: '10px',
-                    borderRadius: '16px',
-                  }}
+          {/* Interactive Filters and Search Bar Row */}
+          <div className="d-flex flex-column flex-md-row gap-3 justify-content-between align-items-center mb-5 w-100 p-3 glassmorphism rounded-4 border-color">
+            
+            {/* Category Tabs */}
+            <div className="d-flex gap-2 flex-wrap m-0">
+              {['All', 'Tech', 'Aerospace', 'Corporate'].map((filter) => (
+                <button
+                  key={filter}
+                  className={`btn rounded-pill px-3 py-2 text-sm fw-medium ${activeFilter === filter ? 'btn-primary btn-gradient' : 'btn-outline'}`}
+                  onClick={() => setActiveFilter(filter)}
+                  style={activeFilter === filter ? { color: '#0a0e1a' } : {}}
                 >
-                  <div className="position-relative h-100">
-                    <div className="image-overlay-2"></div>
-                    <div className="position-absolute start-0 top-0 w-100 h-100" style={{ zIndex: 2 }}>
-                      <div className="d-flex justify-content-center align-items-center h-100 gap-2">
-                        <button
-                          type="button"
-                          className="btn request-loader"
-                          onClick={() => openVideoModal('https://www.youtube.com/embed/hhckoit3fKk?autoplay=1')}
-                          title="Watch Video"
-                        >
-                          <i className="fa-solid fa-play ms-1"></i>
-                        </button>
-                        <button
-                          type="button"
-                          className="btn request-loader bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
-                          style={{ width: '45px', height: '45px' }}
-                          onClick={() =>
-                            handlePlayAudio(
-                              'Dream Your Career Into a Big MNC',
-                              'Bharat Chandra | Microsoft',
-                              'https://talkiepedia.forgealumnus.com/image/microsoft.png',
-                              'hhckoit3fKk'
-                            )
-                          }
-                          title="Listen Audio"
-                        >
-                          <i className="fa-solid fa-headphones"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <img
-                      src="https://talkiepedia.forgealumnus.com/image/microsoft.png"
-                      alt="Dream Your Career Into a Big MNC"
-                      className="img-fluid rounded-3"
-                      onError={(e) => {
-                        e.target.src = 'https://talkiepedia.forgealumnus.com/images/fallback-podcast.jpg';
-                      }}
-                    />
-                  </div>
-                  <div className="d-flex flex-row gap-5">
-                    <div className="d-flex flex-row align-items-center gap-2">
-                      <i className="fa-regular fa-clock accent-color"></i>
-                      <span className="text-soft-dark">28m 39s</span>
-                    </div>
-                    <div className="d-flex flex-row align-items-center gap-2">
-                      <i className="fa-solid fa-calendar-days accent-color"></i>
-                      <span className="text-soft-dark">December 2024</span>
-                    </div>
-                  </div>
-                  <h5 className="font-1 fw-bold lh-1 text-soft-dark">Dream Your Career Into a Big MNC</h5>
-                  <p className="text-soft-dark">Bharat Chandra | Microsoft</p>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="col mb-3">
-                <div
-                  className="d-flex flex-column gap-3 h-100 card-hover"
-                  style={{
-                    boxShadow: '0 2px 8px rgb(0 0 0 / 5%)',
-                    padding: '10px',
-                    borderRadius: '16px',
-                  }}
-                >
-                  <div className="position-relative h-100">
-                    <div className="image-overlay-2"></div>
-                    <div className="position-absolute start-0 top-0 w-100 h-100" style={{ zIndex: 2 }}>
-                      <div className="d-flex justify-content-center align-items-center h-100 gap-2">
-                        <button
-                          type="button"
-                          className="btn request-loader"
-                          onClick={() => openVideoModal('https://www.youtube.com/embed/rsG-bZZ4vCs?autoplay=1')}
-                          title="Watch Video"
-                        >
-                          <i className="fa-solid fa-play ms-1"></i>
-                        </button>
-                        <button
-                          type="button"
-                          className="btn request-loader bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
-                          style={{ width: '45px', height: '45px' }}
-                          onClick={() =>
-                            handlePlayAudio(
-                              'Navigating Corporate Success',
-                              'Dhananjay Dubey | Forge Alumnus',
-                              'https://talkiepedia.forgealumnus.com/image/trailer.png',
-                              'rsG-bZZ4vCs'
-                            )
-                          }
-                          title="Listen Audio"
-                        >
-                          <i className="fa-solid fa-headphones"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <img
-                      src="https://talkiepedia.forgealumnus.com/image/trailer.png"
-                      alt="Navigating Corporate Success"
-                      className="img-fluid rounded-3"
-                      onError={(e) => {
-                        e.target.src = 'https://talkiepedia.forgealumnus.com/images/fallback-podcast.jpg';
-                      }}
-                    />
-                  </div>
-                  <div className="d-flex flex-row gap-5">
-                    <div className="d-flex flex-row align-items-center gap-2">
-                      <i className="fa-regular fa-clock accent-color"></i>
-                      <span className="text-soft-dark">10s</span>
-                    </div>
-                    <div className="d-flex flex-row align-items-center gap-2">
-                      <i className="fa-solid fa-calendar-days accent-color"></i>
-                      <span className="text-soft-dark">October 2024</span>
-                    </div>
-                  </div>
-                  <h5 className="font-1 fw-bold lh-1 text-soft-dark">Navigating Corporate Success</h5>
-                  <p className="text-soft-dark">Dhananjay Dubey | Forge Alumnus</p>
-                </div>
-              </div>
+                  {filter}
+                </button>
+              ))}
             </div>
+
+            {/* Local Search input */}
+            <div className="position-relative w-100 w-md-auto" style={{ minWidth: '300px' }}>
+              <Search size={16} className="position-absolute start-3 top-50 translate-middle-y text-muted" style={{ left: '16px' }} />
+              <input
+                type="text"
+                placeholder="Search episode or speaker..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-100 bg-hover border border-color text-white rounded-pill px-5 py-2 text-sm outline-none"
+                style={{
+                  paddingLeft: '44px',
+                  outline: 'none',
+                  background: 'rgba(255,255,255,0.02)',
+                  fontSize: '0.9rem'
+                }}
+              />
+            </div>
+          </div>
+
+          {/* List Grid */}
+          <div className="row g-4">
+            {filteredEpisodes.length > 0 ? (
+              filteredEpisodes.map((ep) => (
+                <div className="col-12 col-md-6 col-lg-4 animate-fade-up" key={ep.id}>
+                  <div className="card h-100 bg-card border-color p-3 rounded-4 shadow-sm hover-elevate">
+                    
+                    <div className="position-relative overflow-hidden rounded-3 mb-3 aspect-video group">
+                      <img
+                        src={ep.img}
+                        alt={ep.title}
+                        className="w-100 h-100 object-fit-cover transition-transform duration-500 scale-on-hover"
+                        onError={(e) => {
+                          e.target.src = 'https://talkiepedia.forgealumnus.com/image/logo.png';
+                        }}
+                      />
+                      <div className="position-absolute start-0 top-0 w-100 h-100 d-flex justify-content-center align-items-center bg-black-overlay opacity-0-hover transition-opacity">
+                        <div className="d-flex gap-2">
+                          <button
+                            type="button"
+                            className="btn request-loader"
+                            onClick={() => openVideoModal(ep.videoUrl)}
+                            title="Watch Video"
+                          >
+                            <Play size={16} fill="currentColor" />
+                          </button>
+                          <button
+                            type="button"
+                            className="btn bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
+                            style={{ width: '45px', height: '45px', border: '1px solid rgba(255,255,255,0.1)' }}
+                            onClick={() =>
+                              handlePlayAudio(ep.title, ep.artist, ep.img, ep.audioFileId)
+                            }
+                            title="Listen Audio"
+                          >
+                            <Headphones size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="d-flex justify-content-between align-items-center gap-2 mb-2">
+                      <div className="d-flex align-items-center gap-1 text-muted small">
+                        <Clock size={12} className="text-cyan-accent" />
+                        <span>{ep.duration}</span>
+                      </div>
+                      <div className="d-flex align-items-center gap-1 text-muted small">
+                        <Calendar size={12} className="text-cyan-accent" />
+                        <span>{ep.date}</span>
+                      </div>
+                    </div>
+
+                    <h5 className="fw-bold text-white mb-1">{ep.title}</h5>
+                    <p className="text-secondary small m-0">{ep.artist}</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-12 text-center py-5">
+                <AlertCircle size={40} className="text-muted mb-3" />
+                <p className="text-muted">No episodes found matching your criteria.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Recent Episodes Section */}
-      <section className="section" style={{ marginTop: '-80px' }} id="episodes-section">
-        <div className="r-container">
-          <div className="d-flex flex-column gap-3 text-center">
-            <span className="fs-5 text-black">Our Podcast</span>
-            <h3 className="font-1 fw-bold lh-1 text-black">
-              Recent <span className="accent-color">Episodes</span>
-            </h3>
-            <p className="mx-auto text-black" style={{ maxWidth: '768px' }}>
-              Check out our latest episodes featuring inspiring conversations.
-            </p>
-
-            {/* Interactive Filters and Search Bar */}
-            <div className="d-flex flex-column flex-md-row gap-3 justify-content-between align-items-center my-4 w-100">
-              {/* Category Tabs */}
-              <div className="filter-tabs m-0">
-                {['All', 'Tech', 'Aerospace', 'Corporate'].map((filter) => (
-                  <button
-                    key={filter}
-                    className={`filter-tab ${activeFilter === filter ? 'active' : ''}`}
-                    onClick={() => setActiveFilter(filter)}
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
-
-              {/* Search input with animated bottom bar */}
-              <div className="position-relative" style={{ minWidth: '280px' }}>
-                <input
-                  type="text"
-                  placeholder="Search episode or speaker..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="form-control"
-                  style={{
-                    backgroundColor: '#f8f9fa',
-                    border: '1px solid #ced4da',
-                    borderRadius: '20px',
-                    padding: '8px 20px',
-                    fontSize: '0.9rem',
-                    color: '#212529',
-                  }}
+      {/* PLATFORMS BADGES SECTION */}
+      <section className="py-5 bg-card border-top border-bottom border-color">
+        <div className="container">
+          <div className="text-center">
+            <h5 className="fw-bold text-white mb-4">Listen Our Podcast On</h5>
+            <div className="d-flex gap-4 flex-wrap justify-content-center align-items-center">
+              <a href="https://www.youtube.com/@Talkiepedia" target="_blank" rel="noreferrer" className="partner-logo-link">
+                <img
+                  src="https://talkiepedia.forgealumnus.com/image/youtube.png"
+                  alt="YouTube"
+                  style={{ maxHeight: '44px', objectFit: 'contain' }}
                 />
-                <i
-                  className="fa-solid fa-magnifying-glass position-absolute end-0 top-50 translate-middle-y me-3 text-muted"
-                  style={{ pointerEvents: 'none' }}
-                ></i>
-              </div>
-            </div>
-
-            {/* List Grid */}
-            <div className="row row-cols-1 row-cols-lg-3 w-100 text-start">
-              {filteredEpisodes.length > 0 ? (
-                filteredEpisodes.map((ep) => (
-                  <div className="col mb-3 animate-fade-up" key={ep.id}>
-                    <div
-                      className="d-flex flex-column gap-3 h-100 card-hover"
-                      style={{
-                        boxShadow: '0 2px 8px rgb(0 0 0 / 5%)',
-                        padding: '10px',
-                        borderRadius: '16px',
-                      }}
-                    >
-                      <div className="position-relative h-100 podcast-card-shadow">
-                        <div className="image-overlay-2"></div>
-                        <div className="position-absolute start-0 top-0 w-100 h-100" style={{ zIndex: 2 }}>
-                          <div className="d-flex justify-content-center align-items-center h-100 gap-2">
-                            <button
-                              type="button"
-                              className="btn request-loader"
-                              onClick={() => openVideoModal(ep.videoUrl)}
-                              title="Watch Video"
-                            >
-                              <i className="fa-solid fa-play ms-1"></i>
-                            </button>
-                            <button
-                              type="button"
-                              className="btn request-loader bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
-                              style={{ width: '45px', height: '45px' }}
-                              onClick={() =>
-                                handlePlayAudio(ep.title, ep.artist, ep.img, ep.audioFileId)
-                              }
-                              title="Listen Audio"
-                            >
-                              <i className="fa-solid fa-headphones"></i>
-                            </button>
-                          </div>
-                        </div>
-                        <img
-                          src={ep.img}
-                          alt={ep.title}
-                          className="img-fluid rounded-3"
-                          onError={(e) => {
-                            e.target.src = 'https://talkiepedia.forgealumnus.com/images/fallback-podcast.jpg';
-                          }}
-                        />
-                      </div>
-                      <div className="d-flex flex-row gap-5">
-                        <div className="d-flex flex-row align-items-center gap-2">
-                          <i className="fa-regular fa-clock accent-color"></i>
-                          <span className="text-soft-dark">{ep.duration}</span>
-                        </div>
-                        <div className="d-flex flex-row align-items-center gap-2">
-                          <i className="fa-solid fa-calendar-days accent-color"></i>
-                          <span className="text-soft-dark">{ep.date}</span>
-                        </div>
-                      </div>
-                      <h5 className="font-1 fw-bold lh-1 text-soft-dark">{ep.title}</h5>
-                      <p className="text-soft-dark">{ep.artist}</p>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="col-12 text-center py-5">
-                  <i className="fa-solid fa-circle-exclamation fs-1 text-muted mb-3"></i>
-                  <p className="text-muted">No episodes found matching your criteria.</p>
-                </div>
-              )}
+              </a>
+              <a href="https://www.instagram.com/talkiepedia/" target="_blank" rel="noreferrer" className="partner-logo-link">
+                <img
+                  src="https://talkiepedia.forgealumnus.com/image/instagram.png"
+                  alt="Instagram"
+                  style={{ maxHeight: '44px', objectFit: 'contain' }}
+                />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PLATFORMS SECTION */}
-      <section className="section bg-secondary-color">
-        <div className="r-container">
-          <div className="d-flex flex-column gap-3 text-center">
-            <h5 className="font-1 fw-bold text-white">Listen Our Podcast On</h5>
-            <div className="row row-cols-2 justify-content-center align-items-center gap-4">
-              <div className="col-auto mb-3 platform-card">
-                <a href="https://www.youtube.com/@Talkiepedia" target="_blank" rel="noreferrer">
-                  <img
-                    src="https://talkiepedia.forgealumnus.com/image/youtube.png"
-                    alt="youtube"
-                    className="img-fluid"
-                    style={{ maxHeight: '60px' }}
-                  />
-                </a>
-              </div>
-              <div className="col-auto mb-3 platform-card">
-                <a href="https://www.instagram.com/talkiepedia/" target="_blank" rel="noreferrer">
-                  <img
-                    src="https://talkiepedia.forgealumnus.com/image/instagram.png"
-                    alt="instagram"
-                    className="img-fluid"
-                    style={{ maxHeight: '60px' }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Subscribe */}
-      <section className="section">
-        <div className="r-container">
+      {/* NEWSLETTER SUBSCRIBE */}
+      <section className="py-5">
+        <div className="container">
           <div
-            className="section position-relative rounded-4 overflow-hidden bg-attach-fixed"
+            className="p-5 rounded-4 overflow-hidden position-relative border-color"
             style={{
-              backgroundImage: "url('https://talkiepedia.forgealumnus.com/image/trailer.png')",
+              backgroundImage: "linear-gradient(135deg, rgba(6, 9, 19, 0.9) 0%, rgba(14, 19, 38, 0.95) 100%), url('https://talkiepedia.forgealumnus.com/image/trailer.png')",
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              boxShadow: 'var(--shadow-lg)'
             }}
           >
-            <div className="image-overlay-2"></div>
-            <div className="row row-cols-1 row-cols-lg-2 position-relative" style={{ zIndex: 2 }}>
-              <div className="col mb-3">
-                <h3 className="font-1 fw-bold lh-1 text-soft-white">
+            <div className="row align-items-center g-4 position-relative" style={{ zIndex: 2 }}>
+              
+              <div className="col-12 col-lg-6">
+                <h3 className="fw-bold text-white mb-2">
                   <span className="accent-color">Subscribe</span> For The Latest Episodes
                 </h3>
-                <p className="text-gray text-soft-white">
+                <p className="text-secondary m-0">
                   Get the latest podcasts, behind-the-scenes stories, and exclusive content delivered straight to your inbox. Let the conversations continue beyond the mic.
                 </p>
               </div>
 
-              <div className="col mb-3">
-                <div className="d-flex h-100 flex-column justify-content-center">
-                  <h5 className="font-1 fw-bold text-soft-white">Newsletter</h5>
-                  <form className="w-100 form newsletter-form" onSubmit={handleSubscribe}>
-                    <div className="input-group mb-3">
+              <div className="col-12 col-lg-6">
+                <div className="d-flex flex-column gap-2">
+                  <span className="small fw-semibold text-white">Join our newsletter list</span>
+                  <form className="w-100" onSubmit={handleSubscribe}>
+                    <div className="input-group">
                       <input
                         type="email"
-                        className="form-control py-3 px-4 form-white"
-                        placeholder="Your Email"
+                        className="form-control py-3 px-4 text-white bg-transparent border-color"
+                        placeholder="Enter your email address"
+                        style={{ background: 'rgba(255,255,255,0.02)', borderRight: 'none', borderTopLeftRadius: '30px', borderBottomLeftRadius: '30px' }}
                         value={emailInput}
                         onChange={(e) => setEmailInput(e.target.value)}
                         required
                       />
-                      <button className="btn button btn_submit-subscribe font-1 fw-bold px-5" type="submit">
-                        <span className="text-soft-white">Subscribe</span>
+                      <button className="btn btn-primary px-4 fw-bold" type="submit" style={{ borderTopRightRadius: '30px', borderBottomRightRadius: '30px', background: 'linear-gradient(135deg, var(--accent-color) 0%, var(--primary-blue) 100%)', color: '#0a0e1a' }}>
+                        Subscribe
                       </button>
                     </div>
                   </form>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* Video Modal component */}
+      {/* VIDEO OVERLAY MODAL */}
       {activeVideoUrl && (
         <div
-          className="modal show d-block bg-overlay"
-          style={{ zIndex: 2000, display: 'block' }}
+          className="modal show d-block bg-overlay animate-fade-in"
+          style={{ zIndex: 2000, display: 'block', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
           onClick={closeVideoModal}
         >
           <div className="modal-dialog modal-dialog-centered modal-lg" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content bg-dark-color">
-              <div className="modal-header border-0 d-flex justify-content-end p-2">
+            <div className="modal-content bg-dark border-color shadow-lg rounded-4 overflow-hidden">
+              <div className="modal-header border-0 d-flex justify-content-end p-3">
                 <button
                   type="button"
                   className="btn-close btn-close-white"
                   onClick={closeVideoModal}
-                  aria-label="Close"
+                  aria-label="Close video overlay"
                 ></button>
               </div>
               <div className="modal-body p-0">
@@ -562,7 +351,7 @@ const Podcasts = () => {
                     frameBorder="0"
                     allow="autoplay; encrypted-media"
                     allowFullScreen
-                    title="Podcast Video"
+                    title="Podcast Video Player"
                   ></iframe>
                 </div>
               </div>

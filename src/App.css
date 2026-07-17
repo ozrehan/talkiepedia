@@ -85,7 +85,7 @@
 
 .global-search:focus-within {
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.1);
   background: var(--bg-card);
 }
 

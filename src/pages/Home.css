@@ -39,7 +39,7 @@
 }
 
 .ai-search-bar:focus-within {
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
   border-color: var(--primary-blue);
 }
 
@@ -240,9 +240,9 @@
   justify-content: center;
 }
 
-.bg-blue-light { background: rgba(37, 99, 235, 0.1); }
+.bg-blue-light { background: rgba(22, 163, 74, 0.1); }
 .text-blue { color: var(--primary-blue); }
-.bg-purple-light { background: rgba(124, 58, 237, 0.1); }
+.bg-purple-light { background: rgba(21, 128, 61, 0.1); }
 .text-purple { color: var(--purple-accent); }
 
 .contributor-list {
