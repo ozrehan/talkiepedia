@@ -4,7 +4,7 @@ Talkiepedia is a premium interactive learning platform designed to bridge the ga
 
 ## 🔗 Live Deployment Link
 > [!IMPORTANT]
-> **Click here to view the live website: [https://talkiepedia.netlify.app](https://talkiepedia.netlify.app/)**
+> **Click here to view the live website: [https://talkipedia.netlify.app](https://talkipedia.netlify.app/)**
 
 ---
 
