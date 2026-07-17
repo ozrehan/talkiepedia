@@ -141,7 +141,7 @@ export const Layout = () => {
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-label="Toggle Sidebar Navigation"
           >
-            <Menu size={20} />
+            <Menu size={28} />
           </button>
           
           <Link to="/" className="brand-logo-link">
@@ -224,7 +224,7 @@ export const Layout = () => {
                 title="Adjust Font Size (Alt + / -)"
                 aria-label="Adjust font size"
               >
-                <Type size={24} />
+                <Type size={28} />
               </button>
 
               <button 
@@ -233,7 +233,7 @@ export const Layout = () => {
                 title="High Contrast Mode (Alt + C)"
                 aria-label="Toggle high contrast"
               >
-                <Eye size={24} className={contrast === 'high' ? 'text-yellow' : ''} />
+                <Eye size={28} className={contrast === 'high' ? 'text-yellow' : ''} />
               </button>
 
               {/* Interactive Hanging Study Lamp Theme Switcher */}

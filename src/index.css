@@ -632,8 +632,8 @@ button {
 .action-icon-btn {
   color: var(--text-primary);
   opacity: 1;
-  width: 40px;
-  height: 40px;
+  width: 44px !important;
+  height: 44px !important;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -643,8 +643,8 @@ button {
 }
 .action-icon-btn svg {
   stroke-width: 2px !important;
-  width: 24px !important;
-  height: 24px !important;
+  width: 28px !important;
+  height: 28px !important;
 }
 
 .action-icon-btn:hover {
@@ -1151,8 +1151,8 @@ button {
 }
 
 .sidebar-toggle-btn svg {
-  width: 20px !important;
-  height: 20px !important;
+  width: 28px !important;
+  height: 28px !important;
 }
 
 /* High Contrast Mode Input Visibility Overrides */
