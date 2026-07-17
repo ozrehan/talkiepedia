@@ -473,8 +473,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px !important;
+  height: 44px !important;
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
 }
@@ -632,8 +632,8 @@ button {
 .action-icon-btn {
   color: var(--text-primary);
   opacity: 1;
-  width: 44px !important;
-  height: 44px !important;
+  width: 48px !important;
+  height: 48px !important;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -643,8 +643,8 @@ button {
 }
 .action-icon-btn svg {
   stroke-width: 2px !important;
-  width: 28px !important;
-  height: 28px !important;
+  width: 30px !important;
+  height: 30px !important;
 }
 
 .action-icon-btn:hover {
@@ -1151,8 +1151,8 @@ button {
 }
 
 .sidebar-toggle-btn svg {
-  width: 28px !important;
-  height: 28px !important;
+  width: 30px !important;
+  height: 30px !important;
 }
 
 /* High Contrast Mode Input Visibility Overrides */

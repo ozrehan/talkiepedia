@@ -13,7 +13,7 @@ export const Layout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [tollFreeOpen, setTollFreeOpen] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [contrast, setContrast] = useState(localStorage.getItem('contrast') || 'normal');
@@ -141,7 +141,7 @@ export const Layout = () => {
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-label="Toggle Sidebar Navigation"
           >
-            <Menu size={28} />
+            <Menu size={30} />
           </button>
           
           <Link to="/" className="brand-logo-link">
@@ -224,7 +224,7 @@ export const Layout = () => {
                 title="Adjust Font Size (Alt + / -)"
                 aria-label="Adjust font size"
               >
-                <Type size={28} />
+                <Type size={30} />
               </button>
 
               <button 
@@ -233,7 +233,7 @@ export const Layout = () => {
                 title="High Contrast Mode (Alt + C)"
                 aria-label="Toggle high contrast"
               >
-                <Eye size={28} className={contrast === 'high' ? 'text-yellow' : ''} />
+                <Eye size={30} className={contrast === 'high' ? 'text-yellow' : ''} />
               </button>
 
               {/* Interactive Hanging Study Lamp Theme Switcher */}
@@ -275,7 +275,7 @@ export const Layout = () => {
 
             {/* Notification Bell */}
             <button className="action-icon-btn notification-btn" aria-label="Notifications" title="Notifications">
-              <Bell size={28} />
+              <Bell size={30} />
               <span className="notification-dot"></span>
             </button>
 
